@@ -1,0 +1,216 @@
+[v] fix the binary to float c#
+[v] create called functions handler
+[v] test "send" functions
+[v] test the socket handler
+[v] code socket handler for c# end
+[v] do for loop to append some asynchronously returned objects in SocketHandle c#
+
+
+------------ due 21 ------------
+[v] code the FunctionHandler class c++
+[v] code the random class
+[v] code the FunctionHandler class c#
+
+------------ due 22 ------------
+[v] add a static param string holder class c#
+[x] try using ascii encoding to send data to child proc
+
+------------ due 23 ------------
+[v] c++ libraries might need to have 2 options to run, otherwise, it fails (so unnecessary stdout and stdin handler can be ommited)
+[v] programrunner needs an additional options, such as port and pid
+[-] test FunctionHandle class c++ c# (try req)
+
+------------ due 26 ------------ c#
+[v] code a player controller
+  [v] player able to walk
+  [v] player able to use stuff infront of them
+[v] create a useable object
+[v] finish lib_moveto and lib_reqpos
+
+------------ due 28 ------------
+[-] think of how pausing works in child process c++
+[v] fix some code in ProcessHandler for giving child proc the port
+
+------------ due 3 ------------
+[v] player controller should using mouse fully
+[v] create an autoload class for handling and sorting the programs and compilings c#
+[v] code a weapon controller
+[v] might need some weapon database
+
+------------ due 7 ------------
+[v] fix shootasync simultaneously shoot at the same time
+
+------------ due 8 ------------
+[v] create backpack class
+
+
+------------ done lists ------------
+[v] make a game ui
+
+------------ bug lists ------------
+[v] need to know if the program is running or not for ending process
+[v] stuck on thread_cv (seem to be stuck on the FunctionHandler::callFunction, conditional variable "cv" isn't notified)
+    - apparently this problem occured because of the send funcs waiting for parent to send another data
+    - this can be prevented by using input to child for telling it to open a socket
+    - the parent not sending any data
+    
+[v] "function id not found", maybe this happens because of FunctionHandler::callFunction uses wrong function id
+[v] System.Net.Sockets.SocketException (0x80004005): An established connection was aborted by the software in your host machine.
+  - occured when running the program multiple times
+  - also occured when running the program too quick (starting when another similar program still running)
+  - it doesn't occured when it runs on different instance of class (maybe it has to run after the program is done)
+  - i think it caused by same pid with different process, one of it takes some of the data in which another one will be stuck waiting for the data
+
+[v] an async read operation has already been started on the stream (tools.cs:309)
+  - happens when i tried to run the script again
+  - this can be avoided by just making new process
+  - but maybe making the program exit first is the important todo first
+
+[v] cannot compile the programs because the linker cannot open the outputpath (?)
+[ ] change all the timer process mode in player.cs and weapon.cs
+[ ] program won't work as expected when req functions are called (this one is literally randomly worked, just skip this)
+
+[ ] if the robot is stuck physically somewhere in the world, it will stuck on loop
+
+
+------------ testing / debugging lists ------------
+[v] test newly written code
+[v] test req pos
+[v] test textbox and button pressing
+[v] test the scriptloader
+[v] test the savefieloader
+[v] test the new functions in scriptloader
+[v] test the new compiling mechanism
+[v] test "auto-remove programs" function in scriptloader
+[v] test the explosive class
+[v] test melee stuff
+[v] test hazardArea
+
+
+------------ todo lists ------------
+[v] start code again by trying to understand the codes
+[v] try revise the socket and function handler
+[v] stop the programs when the game closed, or the class is deleted
+[v] change how template code works
+[ ] create core bot mechanics
+  [v] move to
+  [-] move forward / backward
+  [-] turning
+  [ ] control motor
+  [ ] control steer
+  [v] req pos
+  [-] req angle
+
+[v] fix script loader autoload
+[v] make a placeholder textbox for the user to type the directory of a script
+[v] for now implement savefiles (just folders and stuff)
+[v] addUser function should initialize folders
+[v] run the script when the button is pressed
+[v] do initialize user srccode in scriptloader
+[v] give some function for botlib from the functions declared
+[v] change how exiting works for child process
+[v] add a prevention for re-running the program
+[v] add a date based prevention for re-compiling same script
+[v] modify all the script handling the programs to current file system
+[v] add a function to automatically delete a program once it doesn't used (except the latest)
+[v] giving extension filter the function
+[v] changing how the GetFilesByExplorer function works
+[v] then make an ui for exploring through the files and picking the script
+[v] make a data for compilers paths and the enum for it
+[v] in the ready function in scriptloader give a check if the command to a compiler is available or not
+[v] add a prompt for the user to pick the language type they want
+[v] add a cancel thing for the prompt and prevent the node from being stuck
+[v] finish some codes in some functions marked with warning signs
+[v] Change how compiling works
+[v] giving async functionality to the compiling process, so it doesn't stuck
+[v] the script loader have feature to compile many srccode for one program
+[v] with the ability to distinguish each file, it can be used for multi language
+[v] then use json files to give the language some data like compiler paths, arguments, and some options
+[v] input should be given from an autoload to cancel some of the input processing if player can still moves even if the current usage was for textbox
+    - or just use an autoload to keep track of the input constraint and the class handle it itself
+    
+[v] make a cleaning function to remove all programs in the bin folder
+[v] need the dependencies for the languages
+[v] random firing accuracy
+[v] decreasing accuracy after firing for a longer time
+[v] fixing camera positioning when aiming
+[v] ads-ing
+[v] change the data structure of weapondata
+[v] weapon class should initialized by code, not scene
+[v] make an explosive stuff
+[v] add damage types and use it for DamageableObj
+[v] change the player class to npc since the robots and enemies use the same function as the player
+[v] give the gun some smoke trails
+[v] use backpack for the player
+[ ] create selection when user right clicks on something (probably won't be used, just for debugging)
+[ ] adding elemental damage based on the reference
+[ ] then adding a gear that can reduce some elemental damages
+[ ] then test it by object type
+[ ] test acid damage for metal object type
+[ ] add coin backpack within the backpack
+[ ] then adding shop system
+[ ] try connecting backpack to the shop system
+[ ] then test the shop system
+[ ] then make a temporary ui for the backpack
+[ ] player have power system (alternative of hunger system)
+[ ] add some firing effects
+[ ] finish weapon shoot type
+[ ] focus on the gui
+[ ] change how measurement are used, instead of pixel, just use meters
+[ ] make a main menu and menu for the game
+
+
+------------ backpack functionality todo list ------------
+[ ] have a functionality to add certain stuffs with certain count
+[ ] weapons will get some ammo from the backpack
+[ ] granades should be in ammo type
+[ ] backpack have limit on how heavy it can carry (and restricted to player ability)
+[ ] player will use backpack
+
+
+------------ Possible todo list ------------
+[ ] re-work on the socket in the cpp end (the socket will be opened when the a function is called, or in short terms, synchronously)
+[ ] work on a pausable program (and a saveable program state)
+[ ] adding an error log to the game from the user programs
+[ ] might need an in-game log for the user to use
+[ ] create ai for the robot
+  [ ] create quadtree class
+  [ ] create a* class using quadtree
+
+[ ] in libraries, use coroutines instead of multithreads c++
+[ ] remove unnecessary stdout and stdin handler c++
+[ ] ProgramRunner might need its own destructor c#
+[ ] try pausable scripts
+
+
+------------ Possible features ------------
+[ ] tile based blocks
+[ ] mineable items
+[ ] Conveyor belts
+[ ] Crafting
+[ ] Craftable stations
+[ ] energy based robots
+[ ] in-game currency for selling the minerals
+[ ] procedural generation maps
+[ ] weather systems
+[ ] signals between robots
+[ ] pipes and wires
+[ ] Electricity
+[ ] Water
+[ ] Lakes, and Seas (if the planet have one, if not it will be just ice)
+[ ] Farming
+[ ] Exotic plants
+[ ] Robot parts for some specific features
+[ ] Caves
+[ ] Enemies
+[ ] Friendlies
+[ ] PETS
+[ ] house for shelter
+[ ] and some craftable furniture/tools for the players to use
+[ ] Lores
+
+
+------------ Optimization lists ------------
+[ ] lasting damage timer should be every second, and the timer is universal and handled by an autoload
+[ ] some timer should be updated every physics process so it doesn't get intervened when the game lags
+[ ] DoTrigger func in Explosives class might not right
